@@ -3,8 +3,12 @@ package com.esprit.examen.services;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.esprit.examen.entities.Stock;
 import com.esprit.examen.repositories.StockRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -82,5 +86,47 @@ public class StockServiceImpl implements IStockService {
 		log.info(finalMessage);
 		return finalMessage;
 	}
+
+	
+//////////////////////////////////// deleteStockById/////////////////////////////////////////////////////
+
+	@Override
+		public void deleteStockById(Long stcokid) {
+			log.debug("methode deletestockById ");
+			try {
+				Optional<Stock> st = stockRepository.findById(stcokid);
+				if(st.isPresent()){
+				Stock s = st.get();
+				stockRepository.delete(s);
+				log.debug("deleteStcokById fini avec succes ");
+				}
+				else {
+					log.error("erreur methode deleteStcokById : " );
+				;
+				}
+			} catch (Exception e) {
+				log.error("erreur methode deleteStcokById : " +e);
+				;
+			}
+
+		}
+
+	@Override
+	public Stock getStockById(Long stockid) {
+			log.debug("methode getStcokById ");
+			try {
+				Stock st= stockRepository.findById(stockid).orElse(null);
+				log.debug("getStockId fini avec succes ");
+				return st;
+			} catch (Exception e) {
+				log.error("erreur methode getStcokById : " +e);
+				return null;
+			}
+		}
+	
+
+		
+	
+	
 
 }
