@@ -55,7 +55,9 @@ class ProduitServiceImplTest {
     @Test
     void addProduit() {
 
-        Produit produit = new Produit(12,12,"prodtest",222.0,);
+
+        //Produit produit = new Produit(12,12,"prodtest",222.0,"12/12/2012","12/12/2022");
+        Produit produit = new Produit();
         Produit addprod= produitService.addProduit(produit);
         assertNotNull(produitService);
 
