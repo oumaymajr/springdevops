@@ -84,6 +84,7 @@ class ProduitServiceImplTest {
     @Test
     void retrieveProduit() {
 
+
         log.debug("Tester retrive du produit");
 
         // utiliser la methode dans le service
