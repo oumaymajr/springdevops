@@ -51,7 +51,7 @@ class ProduitServiceImplTest {
                 */
 
     }
-
+/*
     @Test
     void addProduit() {
 
@@ -77,5 +77,5 @@ class ProduitServiceImplTest {
 
     @Test
     void assignProduitToStock() {
-    }
+    }*/
 }
