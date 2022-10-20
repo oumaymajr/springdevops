@@ -3,8 +3,7 @@ package com.esprit.examen.services;
 import com.esprit.examen.entities.Produit;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -24,6 +23,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @ExtendWith(MockitoExtension.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
 
 @Slf4j
@@ -41,7 +41,8 @@ class ProduitServiceImplTest {
 
 
     @Test
-    void retrieveAllProduits() throws Exception {
+    @Order(1)
+    void  testRetrieveAllProduits() throws Exception {
         log.debug("Tester Retrive All produits");
         List<Produit> produitList = produitService.retrieveAllProduits();
         Assertions.assertNotNull(produitList);
@@ -49,7 +50,8 @@ class ProduitServiceImplTest {
     }
 
     @Test
-    void addProduit() {
+    @Order(1)
+    void testAddProduit() {
         log.debug("Tester Ajout du produit");
 
         // utiliser la methode dans le service
@@ -59,7 +61,7 @@ class ProduitServiceImplTest {
     }
 
     @Test
-    void deleteProduit() {
+    void testDeleteProduit() {
         log.debug("Test méthode Delete produit");
         try {
             produitService.deleteProduit(1L);
@@ -72,7 +74,7 @@ class ProduitServiceImplTest {
 
 
     @Test
-    void updateProduit() {
+    void testUpdateProduit() {
         log.debug("Tester update du produit");
 
         // utiliser la methode dans le service
@@ -82,7 +84,7 @@ class ProduitServiceImplTest {
     }
 
     @Test
-    void retrieveProduit() {
+    void testRetrieveProduit() {
 
 
         log.debug("Tester retrive du produit");
