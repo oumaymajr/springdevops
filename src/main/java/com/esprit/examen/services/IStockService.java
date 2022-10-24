@@ -21,4 +21,5 @@ public interface IStockService {
 
 	void deleteStockById(Long stcokid);
 	public Stock getStockById(Long stockid);
+	public void UpdateLibelleStockId(String libelle, Long ids);
 }

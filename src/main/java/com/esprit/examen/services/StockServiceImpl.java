@@ -123,6 +123,17 @@ public class StockServiceImpl implements IStockService {
 				return null;
 			}
 		}
+
+	@Override
+	public void UpdateLibelleStockId(String libelle, Long ids) {
+		Stock st = stockRepository.findById(ids).orElse(null);
+		if(st!=null){
+		st.setLibelleStock(libelle);
+		stockRepository.save(st);
+		
+		}
+		
+	}
 	
 
 		
