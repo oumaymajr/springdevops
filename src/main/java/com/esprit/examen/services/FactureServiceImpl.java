@@ -101,7 +101,7 @@ public class FactureServiceImpl implements IFactureService {
 	public List<Facture> getFacturesByFournisseur(Long idFournisseur) {
 		List<Facture> fac =new ArrayList();
 		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(null);
-		if (fournisseur.equals(null)) 
+		if (fournisseur==(null)) 
 		{
 			return fac;
 		}
