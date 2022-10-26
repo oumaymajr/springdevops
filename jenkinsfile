@@ -5,10 +5,26 @@ pipeline
 	{
 		stage('Git Checkout')
 		  {
-			steps{
+			steps
+			  {
 				git branch: 'oumayma', url: 'https://github.com/oumaymajr/SpringAOP.git'
+		      }
+	       }
+	       stage('UNIT Testing')
+		  {
+			steps
+			  {
+			  sh 'mvn test'
+			  }
+	       
 		  }
-	}
-		  }
+
+
 }
+
+}
+
+
+
+
 		 
