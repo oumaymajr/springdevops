@@ -1,5 +1,6 @@
 package com.esprit.examen.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -99,8 +100,18 @@ public class FactureServiceImpl implements IFactureService {
 
 	@Override
 	public List<Facture> getFacturesByFournisseur(Long idFournisseur) {
+	List<Facture> fac =new ArrayList();
 		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(null);
-		return (List<Facture>) fournisseur.getFactures();
+		if (fournisseur.equals(null)) 
+		{
+			return fac;
+		}
+		
+		else 
+		{
+			return (List<Facture>) fournisseur.getFactures();	
+		}
+		
 	}
 
 	@Override

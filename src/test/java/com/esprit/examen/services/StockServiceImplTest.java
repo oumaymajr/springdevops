@@ -4,11 +4,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.jupiter.api.Order;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
@@ -30,6 +35,7 @@ public class StockServiceImplTest {
 	IStockService stockService;
 	@Autowired
 	StockRepository stockRepository;
+
 	
 	private static final org.apache.logging.log4j.Logger l = LogManager.getLogger(StockServiceImplTest.class);
 	
@@ -44,26 +50,10 @@ public class StockServiceImplTest {
 		l.info("Stock added successfully!");
 		assertNotNull(savedStock.getLibelleStock());
 		
-		
+	
 	} 
-	 
-
 	@Test
 	@Order(2)
-	public void testDeleteStockById() {
-		l.debug("Test méthode Delete StockById");
-		try {
-			stockService.deleteStockById((long) 39);
-			
-			assertNull(stockService.getStockById((long) 39));
-			l.info("Stock deleted successfully!");
-		} catch (Exception e) {
-			l.error("méthode Delete error :"+ e);
-		}
-		
-	}
-	@Test
-	@Order(3)
 	public void testUpdateLibelleByStockId() {
 		l.debug("Test méthode Modifier Libelle StockbyId");
 		try {
@@ -80,9 +70,9 @@ public class StockServiceImplTest {
 			l.error(String.format("ERROR : %s ", e));
 		}
 	}
-	
+	 
 	@Test
-	@Order(4)
+	@Order(3)
 	public void testretrieveStatusStock() {
 		l.debug("Test méthode Status Stock");
 		try {
@@ -93,10 +83,9 @@ public class StockServiceImplTest {
 		}
 		
 	}
-	
 
 	@Test
-	//@Order(5)
+	@Order(4)
 	public void retrieveStock() {
 		l.debug("Test méthode retrieve Stock");
 		try {
@@ -106,8 +95,33 @@ public class StockServiceImplTest {
 			l.error("méthode retrieve Stock :"+ e);
 		}
 		
+		
 	}
 	
+	@Test
+	@Order(5)
+	public void retrieveAllStocks() {
+		l.debug("Test méthode Retrieve all Stocks");
+		List<Stock> stocks = (List<Stock>) stockService.retrieveAllStocks();
+		for (Stock stock : stocks) {
+			l.info(stock.getLibelleStock() + ": stocks retrieved successfully!");
+		}
+		
+	}
+	@Test
+	@Order(6)
+	public void testDeleteStockById() {
+		l.debug("Test méthode Delete StockById");
+		try {
+			stockService.deleteStockById((long) 39);
+			
+			assertNull(stockService.getStockById((long) 39));
+			l.info("Stock deleted successfully!");
+		} catch (Exception e) {
+			l.error("méthode Delete error :"+ e);
+		}
+		
+	}
 	
 
 }
