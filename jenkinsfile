@@ -19,6 +19,14 @@ pipeline
 	       
 		  }
 
+        stage('Integration Testing')
+		  {
+			steps
+			  {
+			  sh 'mvn verify -DskiUnitTests'
+			  }
+	       
+		  }
 		stage('Maven Build')
 		  {
 			steps
