@@ -4,13 +4,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import static org.mockito.Mockito.when;
 
-import java.text.ParseException;
-import java.util.ArrayList;
+
+
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
-import org.apache.logging.log4j.LogManager;
+
+
 
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -19,8 +19,7 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -29,7 +28,6 @@ import static org.junit.Assert.*;
 
 import com.esprit.examen.repositories.StockRepository;
 
-import ch.qos.logback.classic.Logger;
 import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j

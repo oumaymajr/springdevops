@@ -51,10 +51,7 @@ public class FactureServiceImpl implements IFactureService {
 		return factureRepository.save(f);
 	}
 
-	/*
-	 * calculer les montants remise et le montant total d'un détail facture
-	 * ainsi que les montants d'une facture
-	 */
+	
 	private Facture addDetailsFacture(Facture f, Set<DetailFacture> detailsFacture) {
 		float montantFacture = 0;
 		float montantRemise = 0;
@@ -102,7 +99,7 @@ public class FactureServiceImpl implements IFactureService {
 	public List<Facture> getFacturesByFournisseur(Long idFournisseur) {
 	List<Facture> fac =new ArrayList();
 		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(null);
-		if (fournisseur.equals(null)) 
+		if (fournisseur==(null)) 
 		{
 			return fac;
 		}
