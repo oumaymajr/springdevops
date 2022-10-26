@@ -49,9 +49,9 @@ pipeline
 		  {
 			steps
 			  {
-			  	script{
-						 waitForQualityGate abortPipeline: false
-					  }
+			  	
+		        waitForQualityGate abortPipeline: true
+					  
 			  }
 	       
 		  }
