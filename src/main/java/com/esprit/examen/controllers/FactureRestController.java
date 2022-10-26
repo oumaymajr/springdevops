@@ -36,7 +36,7 @@ public class FactureRestController {
         return factureService.retrieveFacture(factureId);
     }
 
-    // http://localhost:8089/SpringMVC/facture/add-facture/{fournisseur-id}
+
     @PostMapping("/add-facture")
     @ResponseBody
     public Facture addFacture(@RequestBody Facture f) {

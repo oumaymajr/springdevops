@@ -1,24 +1,31 @@
 package com.esprit.examen.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
+
+import static org.mockito.Mockito.when;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
-import org.assertj.core.api.Assertions;
+
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
 import org.springframework.test.context.junit4.SpringRunner;
 import com.esprit.examen.entities.Stock;
+import static org.junit.Assert.*;
 
 import com.esprit.examen.repositories.StockRepository;
 
@@ -31,98 +38,92 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest
 public class StockServiceImplTest {
 	
-	@Autowired
-	IStockService stockService;
-	@Autowired
-	StockRepository stockRepository;
-
-	
-	private static final org.apache.logging.log4j.Logger l = LogManager.getLogger(StockServiceImplTest.class);
-	
-	
-	@Test
-	@Order(1)
-	public void TestAddStock() {
-		l.debug("Test méthode Ajouter Stock");
-		Stock s = new Stock("stock_test",10,20);
-		Stock savedStock= stockService.addStock(s);
-		//System.out.print("Stock "+ savedStock );
-		l.info("Stock added successfully!");
-		assertNotNull(savedStock.getLibelleStock());
-		
-	
-	} 
-	@Test
-	@Order(2)
-	public void testUpdateLibelleByStockId() {
-		l.debug("Test méthode Modifier Libelle StockbyId");
-		try {
-			String libelle= "stock1_test";
-
-			stockService.UpdateLibelleStockId(libelle, (long) 42);
-
-			Stock st = stockService.getStockById((long) 42);
-
-			assertThat(st.getLibelleStock()).isEqualTo(libelle);
-			l.info("Stock modified successfully!");
-			
-		} catch (Exception e) {
-			l.error(String.format("ERROR : %s ", e));
-		}
-	}
+	 @Mock
+	 StockRepository stockrepository;
+	 @InjectMocks
+	 StockServiceImpl stockserivce;
 	 
-	@Test
-	@Order(3)
-	public void testretrieveStatusStock() {
-		l.debug("Test méthode Status Stock");
-		try {
-			stockService.retrieveStatusStock();
-			
-		} catch (Exception e) {
-			l.error("méthode Status Stock :"+ e);
-		}
-		
-	}
+	// cree un stock pour tester 
+	 Stock s = new Stock("stock_test",5,10);
+	 List<Stock> stockList = Arrays.asList(s);
+	 
+	 @Test
+	    @Order(1)
+	    public void testAddStock() {
+	        log.debug("Tester Ajout du stock");
+	        when(stockrepository.save(ArgumentMatchers.any(Stock.class))).thenReturn(s);
+	        // utiliser la methode dans le service
+	        Stock created =stockserivce.addStock(s);
+	        Assertions.assertEquals(created.getLibelleStock(),(s.getLibelleStock()));
+	    }
+	 @Test
+	    @Order(2)
+	    public void  testRetrieveAllStocks() throws Exception {
+	        log.debug("Tester Retrive All stocks");
+	        when(stockrepository.findAll()).thenReturn(stockList);
+	        List<Stock> stockList = stockserivce.retrieveAllStocks();
+	        Assertions.assertNotNull(stockList);
+	 }
 
-	@Test
-	@Order(4)
-	public void retrieveStock() {
-		l.debug("Test méthode retrieve Stock");
-		try {
-			stockService.retrieveStock((long) 4);
+	        
+		@Test
+		@Order(3)
+		public void testUpdateLibelleByStockId() {
+			log.debug("Test méthode Modifier Libelle StockbyId");
+			try {
+				String libelle= "stock1_test";
+
+				stockserivce.UpdateLibelleStockId(libelle, (long) 42);
+
+				Stock st = stockserivce.getStockById((long) 42);
+
+				assertThat(st.getLibelleStock()).isEqualTo(libelle);
+				log.info("Stock modified successfully!");
+				
+			} catch (Exception e) {
+				log.error(String.format("ERROR : %s ", e));
+			}
+		}
+		@Test
+		@Order(4)
+		public void testretrieveStatusStock() {
+			log.debug("Test méthode Status Stock");
+			try {
+				stockserivce.retrieveStatusStock();
+				
+			} catch (Exception e) {
+				log.error("méthode Status Stock :"+ e);
+			}
 			
-		} catch (Exception e) {
-			l.error("méthode retrieve Stock :"+ e);
 		}
-		
-		
-	}
-	
-	@Test
-	@Order(5)
-	public void retrieveAllStocks() {
-		l.debug("Test méthode Retrieve all Stocks");
-		List<Stock> stocks = (List<Stock>) stockService.retrieveAllStocks();
-		for (Stock stock : stocks) {
-			l.info(stock.getLibelleStock() + ": stocks retrieved successfully!");
-		}
-		
-	}
-	@Test
-	@Order(6)
-	public void testDeleteStockById() {
-		l.debug("Test méthode Delete StockById");
-		try {
-			stockService.deleteStockById((long) 39);
+		@Test
+		@Order(5)
+		public void retrieveStock() {
+			log.debug("Test méthode retrieve Stock");
+			try {
+				stockserivce.retrieveStock((long) 4);
+				
+			} catch (Exception e) {
+				log.error("méthode retrieve Stock :"+ e);
+			}
 			
-			assertNull(stockService.getStockById((long) 39));
-			l.info("Stock deleted successfully!");
-		} catch (Exception e) {
-			l.error("méthode Delete error :"+ e);
+			
 		}
-		
-	}
-	
+	 
+		 @Test
+		@Order(6)
+		public void testDeleteStockById() {
+		 log.debug("Test méthode Delete StockById");
+			try {
+				stockserivce.deleteStockById((long) 39);
+				
+				assertNull(stockserivce.getStockById((long) 39));
+				log.info("Stock deleted successfully!");
+			} catch (Exception e) {
+				log.error("méthode Delete error :"+ e);
+			}
+			
+		}
 
 }
 
