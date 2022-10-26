@@ -35,6 +35,14 @@ pipeline
 			  }
 	       
 		  }
+		stage('Static code analysis')
+		  {
+			steps
+			  {
+			  sh 'mvn clean package sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+			  }
+	       
+		  }
 
 }
 
