@@ -10,7 +10,7 @@ pipeline
 				git branch: 'oumayma', url: 'https://github.com/oumaymajr/SpringAOP.git'
 		      }
 	       }
-	       stage('UNIT Testing')
+	    stage('UNIT Testing')
 		  {
 			steps
 			  {
@@ -19,6 +19,14 @@ pipeline
 	       
 		  }
 
+        stage('Integration Testing')
+		  {
+			steps
+			  {
+			  sh 'mvn verify -DskiUnitTests'
+			  }
+	       
+		  }
 
 }
 
