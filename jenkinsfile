@@ -1,11 +1,14 @@
-pipeline{
+pipeline
+{
 	agent any
-	stages{
-		stage('Git Checkout'){
+	stages
+	{
+		stage('Git Checkout')
+		  {
 			steps{
 				git branch: 'oumayma', url: 'https://github.com/oumaymajr/SpringAOP.git'
-				}
-			}
 		  }
-		 }
+	}
+		  }
+}
 		 
