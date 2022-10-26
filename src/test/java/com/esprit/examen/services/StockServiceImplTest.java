@@ -88,6 +88,7 @@ public class StockServiceImplTest {
 			log.debug("Test méthode Status Stock");
 			try {
 				stockserivce.retrieveStatusStock();
+				Assertions.assertNotNull(stockList);
 				
 			} catch (Exception e) {
 				log.error("méthode Status Stock :"+ e);
@@ -100,6 +101,7 @@ public class StockServiceImplTest {
 			log.debug("Test méthode retrieve Stock");
 			try {
 				stockserivce.retrieveStock((long) 4);
+				assertNull(stockserivce.getStockById((long) 4));
 				
 			} catch (Exception e) {
 				log.error("méthode retrieve Stock :"+ e);
