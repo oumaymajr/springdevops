@@ -39,7 +39,19 @@ pipeline
 		  {
 			steps
 			  {
-			  sh 'mvn clean package sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+			  	script{
+			           sh 'mvn clean package sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+			           }
+			  }
+	       
+		  }
+		stage('Quality Gate status')
+		  {
+			steps
+			  {
+			  	script{
+						 waitForQualityGate abortPipeline: false
+					  }
 			  }
 	       
 		  }
