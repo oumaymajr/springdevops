@@ -19,11 +19,11 @@ pipeline
 	       
 		  }
 
-        stage('Integration Testing')
+		stage('Maven Build')
 		  {
 			steps
 			  {
-			  sh 'mvn verify -DskiUnitTests'
+			  sh 'mvn clean install'
 			  }
 	       
 		  }
