@@ -22,8 +22,7 @@ public class SecteurActiviteController {
 	@GetMapping("/retrieve-all-secteurActivite")
 	@ResponseBody
 	public List<SecteurActivite> getSecteurActivite() {
-		List<SecteurActivite> list = secteurActiviteService.retrieveAllSecteurActivite();
-		return list;
+		return secteurActiviteService.retrieveAllSecteurActivite();
 	}
 
 	// http://localhost:8089/SpringMVC/secteurActivite/retrieve-secteurActivite/8
@@ -41,7 +40,6 @@ public class SecteurActiviteController {
 		return secteurActivite;
 	}
 
-	// http://localhost:8089/SpringMVC/secteurActivite/remove-secteurActivite/{secteurActivite-id}
 	@DeleteMapping("/remove-secteurActivite/{secteurActivite-id}")
 	@ResponseBody
 	public void removeSecteurActivite(@PathVariable("secteurActivite-id") Long secteurActiviteId) {

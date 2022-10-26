@@ -70,8 +70,7 @@ public class FournisseurServiceImpl implements IFournisseurService {
 	@Override
 	public Fournisseur retrieveFournisseur(Long fournisseurId) {
 
-		Fournisseur fournisseur = fournisseurRepository.findById(fournisseurId).orElse(null);
-		return fournisseur;
+		return fournisseurRepository.findById(fournisseurId).orElse(null);
 	}
 
 	@Override
@@ -80,7 +79,7 @@ public class FournisseurServiceImpl implements IFournisseurService {
 		SecteurActivite secteurActivite = secteurActiviteRepository.findById(idSecteurActivite).orElse(null);
 		if (fournisseur==(null))
 		{
-			System.out.print("Error");  
+			log.info("Error");  
 		}
 		else
 		{
