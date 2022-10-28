@@ -11,11 +11,7 @@ pipeline {
                 }
             }
 
-            stage('date') {
-                steps{
-                    echo date
-                }
-            }
+
 
             stage('MVN CLEAN') {
                 steps{
