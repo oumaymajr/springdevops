@@ -2,8 +2,10 @@ package com.esprit.examen.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -19,6 +21,9 @@ import com.esprit.examen.entities.CategorieFournisseur;
 import com.esprit.examen.entities.Fournisseur;
 import com.esprit.examen.repositories.FournisseurRepository;
 
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
 import ch.qos.logback.classic.Logger;
 import lombok.extern.slf4j.Slf4j;
 @Service
@@ -29,21 +34,26 @@ import lombok.extern.slf4j.Slf4j;
 
 public class FournisseurServiceImpTest {
 	
+	@Mock
+	private FournisseurRepository fr;
+	@InjectMocks
+	private FournisseurServiceImpl of;
+	
 	@Autowired
 	IFournisseurService fournisseurService;
-	@Autowired
-	FournisseurRepository fournisseurRepository;
 	
 	private static final org.apache.logging.log4j.Logger l = LogManager.getLogger(FournisseurServiceImpTest.class);
-	
 	
 	@Test
 	@Order(1)
 	public void TestAddFournisseur() {
+		
+		
 		l.debug("Test méthode Ajouter Fournisseur");
 		Fournisseur f = new Fournisseur("Test","Test",CategorieFournisseur.ORDINAIRE);
 		Fournisseur savedFournisseur= fournisseurService.addFournisseur(f);
 		//System.out.print("Stock "+ savedStock );
+		when(fr.save(f)).thenReturn(f);
 		l.info("Fournisseur added successfully!");
 		assertNotNull(savedFournisseur.getLibelle());
 		
@@ -68,6 +78,7 @@ public class FournisseurServiceImpTest {
 	@Test
 	@Order(2)
 	public void testUpdateLibelleByFournisseurId() {
+		
 		l.debug("Test méthode Modifier Libelle FournisseurId");
 		try {
 			String libelle= "test2";
@@ -76,6 +87,7 @@ public class FournisseurServiceImpTest {
 
 			Fournisseur st = fournisseurService.getFournisseurById((long) 1);
 
+			when(fr.save(st)).thenReturn(st);
 			assertThat(st.getLibelle()).isEqualTo(libelle);
 			l.info("Fournisseur modified successfully!");
 			
@@ -85,16 +97,17 @@ public class FournisseurServiceImpTest {
 	}
 	
 	
-	/*@Test
+	@Test
 	@Order(4)
-	public List<Fournisseur> retrieveAllFournisseurs() {
+	public void retrieveAllFournisseurs() {
 		l.debug("Test méthode Retrieve Fournisseur");
 		List<Fournisseur> fournisseurs = (List<Fournisseur>) fournisseurService.retrieveAllFournisseurs();
 		for (Fournisseur fournisseur : fournisseurs) {
-			l.info(fournisseur + "Fournisseur retrieved successfully!");
+			l.info(fournisseur.getLibelle() + ": Fournisseur retrieved successfully!");
 		}
-		return fournisseurs;
-	}*/
+		when(fr.findAll()).thenReturn(fournisseurs);
+		//return fournisseurs;
+	}
 	
 	
 	
