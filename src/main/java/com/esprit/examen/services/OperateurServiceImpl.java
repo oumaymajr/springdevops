@@ -51,7 +51,7 @@ public class OperateurServiceImpl implements IOperateurService {
 	@Transactional
 
 	public void deleteOperateurById(Long id) {
-			log.debug("methode deleteEntrepriseById ");
+			log.debug("methode deleteOperateurById ");
 			try {
 				Optional<Operateur> opp = operateurRepository.findById(id);
 				if(opp.isPresent()){
@@ -61,11 +61,9 @@ public class OperateurServiceImpl implements IOperateurService {
 				}
 				else {
 					log.error("erreur methode deleteOperateureById : " );
-				;
 				}
 			} catch (Exception e) {
 				log.error("erreur methode deleteEntrepriseById : " +e);
-				;
 			}
 
 		}
@@ -75,10 +73,10 @@ public class OperateurServiceImpl implements IOperateurService {
 			log.debug("methode getOperateurById ");
 			try {
 				Operateur o= operateurRepository.findById(id).orElse(null);
-				log.debug("getEntrepriseById fini avec succes ");
+				log.debug("getOperateurById fini avec succes ");
 				return o;
 			} catch (Exception e) {
-				log.error("erreur methode getEntrepriseById : " +e);
+				log.error("erreur methode getOperateurById : " +e);
 				return null;
 			}
 		}
