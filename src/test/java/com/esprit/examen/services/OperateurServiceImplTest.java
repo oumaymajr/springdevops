@@ -99,7 +99,7 @@ public void TestRetrieveAllOperateurs() {
         when(or.findAll()).thenReturn(operateurlist);
 		List<Operateur> operateurlist = (List<Operateur>) operateurservice.retrieveAllOperateurs();
 		Assertions.assertNotNull(operateurlist);
-        l.info("Retrieve  All Operateurs done !");
+        l.info("Retrieve  All Operateurs done !!!");
 		}
 	}
 
