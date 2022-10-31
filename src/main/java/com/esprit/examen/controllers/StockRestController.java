@@ -21,7 +21,6 @@ public class StockRestController {
 	@Autowired
 	IStockService stockService;
 
-	// http://localhost:8089/SpringMVC/stock/retrieve-all-stocks
 	@GetMapping("/retrieve-all-stocks")
 	@ResponseBody
 	public List<Stock> getStocks() {
@@ -29,7 +28,6 @@ public class StockRestController {
 
 	}
 
-	// http://localhost:8089/SpringMVC/stock/retrieve-stock/8
 	@GetMapping("/retrieve-stock/{stock-id}")
 	@ResponseBody
 	public Stock retrieveStock(@PathVariable("stock-id") Long stockId) {

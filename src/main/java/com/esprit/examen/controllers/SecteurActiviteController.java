@@ -18,15 +18,12 @@ public class SecteurActiviteController {
 	@Autowired
 	ISecteurActiviteService secteurActiviteService;
 	
-	// http://localhost:8089/SpringMVC/secteurActivite/retrieve-all-secteurActivite
 	@GetMapping("/retrieve-all-secteurActivite")
 	@ResponseBody
 	public List<SecteurActivite> getSecteurActivite() {
-		List<SecteurActivite> list = secteurActiviteService.retrieveAllSecteurActivite();
-		return list;
+		return secteurActiviteService.retrieveAllSecteurActivite();
 	}
 
-	// http://localhost:8089/SpringMVC/secteurActivite/retrieve-secteurActivite/8
 	@GetMapping("/retrieve-secteurActivite/{secteurActivite-id}")
 	@ResponseBody
 	public SecteurActivite retrieveSecteurActivite(@PathVariable("secteurActivite-id") Long secteurActiviteId) {

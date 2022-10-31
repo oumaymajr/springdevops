@@ -3,7 +3,6 @@ package com.esprit.examen.controllers;
 import java.util.Date;
 import java.util.List;
 
-import com.esprit.examen.entities.Facture;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -31,14 +30,12 @@ public class ReglementRestController {
 
     }
 
-    // http://localhost:8089/SpringMVC/reglement/retrieve-reglement/8
     @GetMapping("/retrieve-reglement/{reglement-id}")
     @ResponseBody
     public Reglement retrieveReglement(@PathVariable("reglement-id") Long reglementId) {
         return reglementService.retrieveReglement(reglementId);
     }
 
-    // http://localhost:8089/SpringMVC/reglement/retrieveReglementByFacture/8
     @GetMapping("/retrieveReglementByFacture/{facture-id}")
     @ResponseBody
     public List<Reglement> retrieveReglementByFacture(@PathVariable("facture-id") Long factureId) {
