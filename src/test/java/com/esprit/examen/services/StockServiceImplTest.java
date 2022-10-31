@@ -16,10 +16,9 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -40,34 +39,51 @@ public class StockServiceImplTest {
 	 StockRepository stockrepository;
 	 @InjectMocks
 	 StockServiceImpl stockserivce;
+	 @Autowired 
+	 IStockService st;
 	 
-	// cree un stock pour tester 
+	 
+	// cree des stocks pour tester 
+	 
 	 Stock s = new Stock("stock_test",5,10);
-	 List<Stock> stockList = Arrays.asList(s);
+	 Stock s1 = new Stock("stock_test1",2,10);
+	 
+	 List<Stock> stockList = Arrays.asList(s,s1);
 	 
 	 @Test
 	    @Order(1)
-	    public void testAddStock() {
-	        log.debug("Tester Ajout du stock");
-	        when(stockrepository.save(ArgumentMatchers.any(Stock.class))).thenReturn(s);
-	        // utiliser la methode dans le service
+	    public void TestAddStock() {
+	        log.info("Test add stock");
+	        when(stockrepository.save(s)).thenReturn(s);
 	        Stock created =stockserivce.addStock(s);
 	        Assertions.assertEquals(created.getLibelleStock(),(s.getLibelleStock()));
+	        log.info("Stock"+s.getLibelleStock()+"added succesfully");
 	    }
 	 @Test
 	    @Order(2)
-	    public void  testRetrieveAllStocks() throws Exception {
-	        log.debug("Tester Retrive All stocks");
+	    public void  TestRetrieveAllStocks() {
+	        log.info("Test Retrive All stocks");
 	        when(stockrepository.findAll()).thenReturn(stockList);
 	        List<Stock> stockList = stockserivce.retrieveAllStocks();
 	        Assertions.assertNotNull(stockList);
+	        log.info("Retrieve All Stocks Works !");
 	 }
+
+	 	@Test
+	 	@Order(3)
+	 	public void TestUpdateStock() {
+	 	log.info("Test Update stock");
+        when(stockrepository.save(s)).thenReturn(s);
+        assertNotNull(s);
+        assertEquals(s, stockserivce.updateStock(s));
+        log.info("Stock updated succesfully !");
+    }
 
 	        
 		@Test
-		@Order(3)
-		public void testUpdateLibelleByStockId() {
-			log.debug("Test méthode Modifier Libelle StockbyId");
+		@Order(4)
+		public void TestUpdateLibelleByStockId() {
+			log.info("Test Update Libelle StockbyId");
 			try {
 				String libelle= "stock1_test";
 
@@ -83,44 +99,44 @@ public class StockServiceImplTest {
 			}
 		}
 		@Test
-		@Order(4)
-		public void testretrieveStatusStock() {
-			log.debug("Test méthode Status Stock");
+		@Order(5)
+		public void TestRetrieveStatusStock() {
+			log.info("Test Status Stock");
 			try {
 				stockserivce.retrieveStatusStock();
 				Assertions.assertNotNull(stockList);
 				
 			} catch (Exception e) {
-				log.error("méthode Status Stock :"+ e);
+				log.error(" Status Stock ERROR :"+ e);
 			}
 			
 		}
 		@Test
-		@Order(5)
-		public void retrieveStock() {
-			log.debug("Test méthode retrieve Stock");
+		@Order(6)
+		public void RetrieveStock() {
+			log.info("Test retrieve Stock");
 			try {
 				stockserivce.retrieveStock((long) 4);
 				assertNull(stockserivce.getStockById((long) 4));
 				
 			} catch (Exception e) {
-				log.error("méthode retrieve Stock :"+ e);
+				log.error("retrieve Stock ERROR :"+ e);
 			}
 			
 			
 		}
 	 
 		 @Test
-		@Order(6)
-		public void testDeleteStockById() {
+		@Order(7)
+		public void TestDeleteStockById() {
 		 log.debug("Test méthode Delete StockById");
 			try {
-				stockserivce.deleteStockById((long) 39);
+				st.deleteStockById((long) 47);
 				
-				assertNull(stockserivce.getStockById((long) 39));
+				assertNull(st.getStockById((long) 47));
 				log.info("Stock deleted successfully!");
 			} catch (Exception e) {
-				log.error("méthode Delete error :"+ e);
+				log.error("Delete ERROR :"+ e);
 			}
 			
 		}

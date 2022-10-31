@@ -101,7 +101,6 @@ public class StockServiceImpl implements IStockService {
 				}
 				else {
 					log.error("erreur methode deleteStcokById : " );
-				;
 				}
 			} catch (Exception e) {
 				log.error("erreur methode deleteStcokById : " +e);
