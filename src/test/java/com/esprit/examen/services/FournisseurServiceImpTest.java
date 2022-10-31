@@ -100,7 +100,7 @@ public class FournisseurServiceImpTest {
 	@Test
 	@Order(4)
 	public void retrieveAllFournisseurs() {
-		l.debug("Test méthode Retrieve Fournisseur");
+		l.debug("Test methode Retrieve Fournisseur");
 		List<Fournisseur> fournisseurs = (List<Fournisseur>) fournisseurService.retrieveAllFournisseurs();
 		for (Fournisseur fournisseur : fournisseurs) {
 			l.info(fournisseur.getLibelle() + ": Fournisseur retrieved successfully!");
