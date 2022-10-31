@@ -22,7 +22,7 @@ import com.esprit.examen.entities.Operateur;
 @TestMethodOrder(OrderAnnotation.class)
 
 public class OperateurServiceImplTest {
-	private static final Logger l = LogManager.getLogger(OperateurServiceImplTest.class);
+private static final Logger l = LogManager.getLogger(OperateurServiceImplTest.class);
 
 
 @Autowired 
@@ -67,9 +67,20 @@ public void TestUpdateNomById() {
 	} catch (Exception e) {
 		l.error(String.format("ERROR : %s ", e));
 	}
+}	
+@Test
+@Order(4)
+public void TestretrieveAllOperateurs() {
+		l.debug("Test méthode Retrieve Operateurs");
+		List<Operateur> operateurs = (List<Operateur>) operateurservice.retrieveAllOperateurs();
+		for (Operateur operateur : operateurs) {
+			l.info(operateur.getNom() + ": Operateur retrieved successfully!");
+		}
+		//return operateurs;
+	}
 }
 
-}
+
 	
 
 
