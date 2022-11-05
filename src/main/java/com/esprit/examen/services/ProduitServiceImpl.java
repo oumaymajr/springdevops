@@ -49,8 +49,8 @@ public class ProduitServiceImpl implements IProduitService {
 	@Override
 	public Produit updateProduit(Produit p) {
 		produitRepository.save(p);
-		p.setLibelleProduit(");
-		return o;
+		p.setLibelleProduit("aa");
+		return p;
 		
 	}
 
