@@ -9,7 +9,7 @@ pipeline {
 
     agent any
     stages {
-            stage('Checkout GIT'){
+            stage('GIT'){
                 steps{
                     echo 'pulling ...';
                         git branch : 'nour',
@@ -27,7 +27,11 @@ pipeline {
             }
 
            
-
+            stage('MVN COMPILE') {
+                steps{
+                    sh 'mvn compile'
+                }
+            }
             stage('MVN SONARQUBE') {
                 steps{
                     sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=ApaMkvk8urqBe9q'
