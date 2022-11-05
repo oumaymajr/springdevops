@@ -87,7 +87,7 @@ public class StockServiceImplTest {
 			try {
 				String libelle= "stock1_test";
 
-				stockserivce.UpdateLibelleStockId(libelle, (long) 42);
+				stockserivce.UpdateLibelleStock_Id(libelle, (long) 42);
 
 				Stock st = stockserivce.getStockById((long) 42);
 
