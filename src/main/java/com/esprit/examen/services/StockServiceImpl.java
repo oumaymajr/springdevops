@@ -123,7 +123,7 @@ public class StockServiceImpl implements IStockService {
 		}
 
 	@Override
-	public void UpdateLibelleStockId(String libelle, Long ids) {
+	public void UpdateLibelleStock_Id(String libelle, Long ids) {
 		Stock st = stockRepository.findById(ids).orElse(null);
 		if(st!=null){
 		st.setLibelleStock(libelle);
