@@ -34,6 +34,7 @@ public class CategorieProduitServiceImpl implements ICategorieProduitService {
 	@Override
 	public CategorieProduit updateCategorieProduit(CategorieProduit cp) {
 		categorieProduitRepository.save(cp);
+		cp.setLibelleCategorie("aa");
 		return cp;
 	}
 
