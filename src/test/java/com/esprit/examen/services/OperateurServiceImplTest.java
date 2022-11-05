@@ -71,7 +71,7 @@ public void TestUpdateNomById() {
 	try {
 		String nom= "devops";
 
-		operateurservice.UpdateNomById(nom, (long) 3);
+		operateurservice.UpdateNomBy_Id(nom, (long) 3);
 
 		Operateur o = operateurservice.getOperateurById((long) 3);
 
