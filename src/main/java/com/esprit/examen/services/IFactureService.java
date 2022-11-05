@@ -9,6 +9,7 @@ public interface IFactureService {
 
 	List<Facture> getFacturesByFournisseur(Long idFournisseur);
 
+	Facture addFacture(Facture f);
 
 	void cancelFacture(Long id);
 

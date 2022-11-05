@@ -45,7 +45,12 @@ public class FactureServiceImpl implements IFactureService {
 		}
 		return factures;
 	}
+	public Facture addFacture(Facture f) {
+		return factureRepository.save(f);
+	}
 
+
+	
 	
 	
 
