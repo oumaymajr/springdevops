@@ -36,7 +36,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @ExtendWith(MockitoExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@SpringBootTest(classes = ProduitServiceImplTest.class)
 
 @Slf4j
 class ProduitServiceImplTest {
