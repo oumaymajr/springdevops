@@ -42,14 +42,12 @@ public class FactureRestController {
     }
 
 
-    // http://localhost:8089/SpringMVC/facture/cancel-facture/{facture-id}
     @PutMapping("/cancel-facture/{facture-id}")
     @ResponseBody
     public void cancelFacture(@PathVariable("facture-id") Long factureId) {
         factureService.cancelFacture(factureId);
     }
 
-    // http://localhost:8089/SpringMVC/facture/getFactureByFournisseur/{fournisseur-id}
     @GetMapping("/getFactureByFournisseur/{fournisseur-id}")
     @ResponseBody
     public List<Facture> getFactureByFournisseur(@PathVariable("fournisseur-id") Long fournisseurId) {

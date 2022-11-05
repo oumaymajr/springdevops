@@ -82,7 +82,7 @@ public class OperateurServiceImpl implements IOperateurService {
 		}
 
 	@Override
-	public void UpdateNomById(String nom, Long id) {
+	public void UpdateNomBy_Id(String nom, Long id) {
 		Operateur o = operateurRepository.findById(id).orElse(null);
 		if(o!= null) {
 			o.setNom(nom);
