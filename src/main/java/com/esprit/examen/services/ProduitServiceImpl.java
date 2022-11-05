@@ -24,7 +24,7 @@ public class ProduitServiceImpl implements IProduitService {
 
 	@Override
 	public List<Produit> retrieveAllProduits() {
-		List<Produit> produits = (List<Produit>) produitRepository.findAll();
+		List<Produit> produits = produitRepository.findAll();
 		for (Produit produit : produits) {
 			log.info(" Produit : " + produit);
 		}
@@ -46,8 +46,12 @@ public class ProduitServiceImpl implements IProduitService {
 
 	@Override
 	public Produit updateProduit(Produit p) {
-		return produitRepository.save(p);
+		 produitRepository.save(p);
+		 p.setCodeProduit("aaa");
+		 return p;
 	}
+
+
 
 	@Override
 	public Produit retrieveProduit(Long produitId) {

@@ -36,7 +36,7 @@ public class FactureServiceImpl implements IFactureService {
 	
 	@Override
 	public List<Facture> retrieveAllFactures() {
-		List<Facture> factures = (List<Facture>) factureRepository.findAll();
+		List<Facture> factures = factureRepository.findAll();
 		for (Facture facture : factures) {
 			log.info(" facture : " + facture);
 		}
@@ -53,12 +53,9 @@ public class FactureServiceImpl implements IFactureService {
 
 	@Override
 	public void cancelFacture(Long factureId) {
-		// Méthode 01
-		//Facture facture = factureRepository.findById(factureId).get();
 		Facture facture = factureRepository.findById(factureId).orElse(new Facture());
 		facture.setArchivee(true);
 		factureRepository.save(facture);
-		//Méthode 02 (Avec JPQL)
 		factureRepository.updateFacture(factureId);
 	}
 
@@ -73,7 +70,7 @@ public class FactureServiceImpl implements IFactureService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Facture> getFacturesByFournisseur(Long idFournisseur) {
-	List<Facture> fac =new ArrayList<Facture>();
+	List<Facture> fac =new ArrayList<>();
 		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(null);
 		if (fournisseur==(null)) 
 		{
@@ -107,8 +104,7 @@ public class FactureServiceImpl implements IFactureService {
 	public float pourcentageRecouvrement(Date startDate, Date endDate) {
 		float totalFacturesEntreDeuxDates = factureRepository.getTotalFacturesEntreDeuxDates(startDate,endDate);
 		float totalRecouvrementEntreDeuxDates =reglementService.getChiffreAffaireEntreDeuxDate(startDate,endDate);
-		float pourcentage=(totalRecouvrementEntreDeuxDates/totalFacturesEntreDeuxDates)*100;
-		return pourcentage;
+		return (totalRecouvrementEntreDeuxDates/totalFacturesEntreDeuxDates)*100;
 	}
 	
 

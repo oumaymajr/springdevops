@@ -25,8 +25,7 @@ public class FactureRestController {
     @GetMapping("/retrieve-all-factures")
     @ResponseBody
     public List<Facture> getFactures() {
-        List<Facture> list = factureService.retrieveAllFactures();
-        return list;
+        return factureService.retrieveAllFactures();
     }
 
     // http://localhost:8089/SpringMVC/facture/retrieve-facture/8
@@ -36,12 +35,10 @@ public class FactureRestController {
         return factureService.retrieveFacture(factureId);
     }
 
-    // http://localhost:8089/SpringMVC/facture/add-facture/{fournisseur-id}
     @PostMapping("/add-facture")
     @ResponseBody
     public Facture addFacture(@RequestBody Facture f) {
-        Facture facture = factureService.addFacture(f);
-        return facture;
+        return factureService.addFacture(f);
     }
 
 
@@ -65,7 +62,6 @@ public class FactureRestController {
         factureService.assignOperateurToFacture(idOperateur, idFacture);
     }
 
-    // http://localhost:8089/SpringMVC/facture/pourcentageRecouvrement/{startDate}/{endDate}
     @GetMapping(value = "/pourcentageRecouvrement/{startDate}/{endDate}")
     public float pourcentageRecouvrement(
             @PathVariable(name = "startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
