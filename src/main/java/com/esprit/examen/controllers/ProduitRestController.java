@@ -20,7 +20,7 @@ public class ProduitRestController {
 	@Autowired
 	IProduitService produitService;
 
-	// http://localhost:8089/SpringMVC/produit/retrieve-all-produits
+
 	@GetMapping("/retrieve-all-produits")
 	@ResponseBody
 	public List<Produit> getProduits() {
@@ -34,7 +34,7 @@ public class ProduitRestController {
 		return produitService.retrieveProduit(produitId);
 	}
 
-	/* Ajouter en produit tout en lui affectant la catégorie produit et le stock associés */
+
 	
 	@PostMapping("/add-produit")
 	@ResponseBody
@@ -56,11 +56,6 @@ public class ProduitRestController {
 		return produitService.updateProduit(p);
 	}
 
-	/*
-	 * Si le responsable magasin souhaite modifier le stock du produit il peut
-	 * le faire en l'affectant au stock en question
-	 */
-	// http://localhost:8089/SpringMVC/produit/assignProduitToStock/1/5
 	@PutMapping(value = "/assignProduitToStock/{idProduit}/{idStock}")
 	public void assignProduitToStock(@PathVariable("idProduit") Long idProduit, @PathVariable("idStock") Long idStock) {
 		produitService.assignProduitToStock(idProduit, idStock);
