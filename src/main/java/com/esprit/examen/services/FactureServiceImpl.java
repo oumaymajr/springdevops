@@ -81,11 +81,14 @@ public class FactureServiceImpl implements IFactureService {
 	@Override
 	public void cancelFacture(Long factureId) {
 		// Méthode 01
-		Facture facture = factureRepository.findById(factureId).orElse(new Facture());
-		facture.setArchivee(true);
-		factureRepository.save(facture);
-		//Méthode 02 (Avec JPQL)
-		factureRepository.updateFacture(factureId);
+		Facture facture = factureRepository.getById(factureId);
+		if (facture !=null)
+		{facture.setArchivee(true);
+			factureRepository.save(facture);}
+		else {
+			throw new NullPointerException("return value is null at method assignOperateurToFacture");
+		}
+
 	}
 
 	@Override
