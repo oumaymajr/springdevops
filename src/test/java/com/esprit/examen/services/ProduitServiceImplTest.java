@@ -14,6 +14,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -34,6 +35,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
+@ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(classes = ProduitServiceImplTest.class)
