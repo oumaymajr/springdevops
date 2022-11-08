@@ -38,7 +38,7 @@ pipeline {
             }
             stage('MVN SONARQUBE') {
                 steps{
-                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=espr'
+                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=esprit'
                 }
             }
         stage('Mvn Nexus'){
