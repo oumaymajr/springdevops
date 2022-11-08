@@ -24,23 +24,30 @@ pipeline {
 
 
 
-            stage('MVN CLEAN') {
-                steps{
-                    sh 'mvn clean'
+        stage('MVN clean'){
+            steps{
+                echo 'Cleaning Project '
+                echo "Maven Version "
+                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+        }
+        stage('MVN COMPILE'){
+            steps{
+                script{
+                    sh 'mvn clean install -DskipTests'
                 }
             }
-
-           
-            stage('MVN COMPILE') {
-                steps{
-                    sh 'mvn compile'
-                }
+        }
+        stage("Runing Tests with Mockito") {
+            steps{
+                sh 'mvn test'
             }
-            stage('MVN SONARQUBE') {
-                steps{
-                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=esprit'
-                }
+        }
+        stage("MVN SonarQube") {
+            steps{
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin123 -DskipTests -X'
             }
+        }
         stage('Mvn Nexus'){
             steps {
                 script {
