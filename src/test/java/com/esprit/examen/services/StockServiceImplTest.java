@@ -71,7 +71,7 @@ public class StockServiceImplTest {
 			l.error(String.format("ERROR : %s ", e));
 		}
 	}
-	 
+	
 	@Test
 	@Order(3)
 	public void testretrieveStatusStock() {
