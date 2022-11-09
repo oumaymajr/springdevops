@@ -79,6 +79,7 @@ public class StockServiceImplTest {
 		try {
 			stockService.retrieveStatusStock();
 			
+			
 		} catch (Exception e) {
 			l.error("méthode Status Stock :"+ e);
 		}
