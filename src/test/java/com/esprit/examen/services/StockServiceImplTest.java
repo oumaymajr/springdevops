@@ -51,8 +51,8 @@ public class StockServiceImplTest {
 		l.info("Stock added successfully!");
 		assertNotNull(savedStock.getLibelleStock());
 		
+	}
 	
-	} 
 	@Test
 	@Order(2)
 	public void testUpdateLibelleByStockId() {
