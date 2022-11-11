@@ -126,6 +126,16 @@ pipeline {
             }
 
         }
+        
+         stage('docker-compose up') {
+
+                steps {
+
+                    sh "docker-compose -f /home/docker-compose.yml up"
+
+            }
+
+        }
 
     }
 
