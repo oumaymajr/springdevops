@@ -131,7 +131,7 @@ pipeline {
 
                 steps {
 
-                    sh "docker-compose -f /home/docker-compose.yml up"
+                    sh "docker-compose -f /home/docker-compose.yml up -d"
 
             }
 
