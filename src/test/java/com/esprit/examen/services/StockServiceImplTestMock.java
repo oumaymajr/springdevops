@@ -1,6 +1,5 @@
 package com.esprit.examen.services;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,11 +13,8 @@ import com.esprit.examen.entities.Stock;
 import com.esprit.examen.repositories.StockRepository;
 
 import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+
 
 @ExtendWith(MockitoExtension.class)
 
@@ -34,7 +30,7 @@ Stock o = new Stock("stock_test",10,20);
 Stock s = new Stock("stock_test",5,10);
 Stock s1 = new Stock("stock_test1",2,10);
 
-List<Stock> stockList = Arrays.asList(s,s1);
+
 
 Long getId()
 {
@@ -69,8 +65,7 @@ void TestdeleteAllStock() {
 void TestretrieveStock() {
     Mockito.when(or.findById(Mockito.anyLong())).thenReturn(Optional.of(o));
 
-    Mockito.when(or.findById(Mockito.anyLong())).thenReturn(Optional.of(o))
-    ;
+    Mockito.when(or.findById(Mockito.anyLong())).thenReturn(Optional.of(o));
     Stock op = os.retrieveStock(2L);
     Assertions.assertNotNull(op);
 
