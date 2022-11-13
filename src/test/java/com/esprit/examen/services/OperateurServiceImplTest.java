@@ -1,30 +1,26 @@
 package com.esprit.examen.services;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
-
 import java.util.Arrays;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+
 import com.esprit.examen.entities.Operateur;
 import com.esprit.examen.repositories.OperateurRepository;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@TestMethodOrder(OrderAnnotation.class)
+@ExtendWith(MockitoExtension.class)
+
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
 
 public class OperateurServiceImplTest {
 private static final Logger l = LogManager.getLogger(OperateurServiceImplTest.class);
@@ -43,7 +39,7 @@ List<Operateur> operateurlist = Arrays.asList(o1,o2);
 @Test
 @Order(1)
 public void TestAddOperateur () {
-	when(or.save(o1)).thenReturn(o1);
+	Mockito.when(or.save(o1)).thenReturn(o1);
     assertNotNull(o1);
     assertEquals(o1,os.addOperateur(o1));
 	System.out.print("operateur "+ o1.getPrenom()+ " added succesfully");
@@ -86,7 +82,7 @@ public void TestUpdateNomById() {
 @Test
 @Order(3)
 public void TestUpdateOperateur() {
-    when(or.save(o1)).thenReturn(o1);
+	Mockito.when(or.save(o1)).thenReturn(o1);
     assertNotNull(o1);
     assertEquals(o1, os.updateOperateur(o1));
 
@@ -96,7 +92,7 @@ public void TestUpdateOperateur() {
 @Order(4)
 public void TestRetrieveAllOperateurs() {
 		l.debug("Test méthode Retrieve Operateurs");
-        when(or.findAll()).thenReturn(operateurlist);
+		Mockito.when(or.findAll()).thenReturn(operateurlist);
 		List<Operateur> operateurlist = (List<Operateur>) operateurservice.retrieveAllOperateurs();
 		Assertions.assertNotNull(operateurlist);
         l.info("Retrieve  All Operateurs done !!!");
