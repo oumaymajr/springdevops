@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 
-public class StockServiceImplJunitTest {
+ class StockServiceImplJunitTest {
 	@Autowired
 	IStockService stockService;
 
