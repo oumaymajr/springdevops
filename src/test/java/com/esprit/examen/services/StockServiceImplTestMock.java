@@ -7,14 +7,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.esprit.examen.entities.Stock;
 import com.esprit.examen.repositories.StockRepository;
 
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
-
 
 @ExtendWith(MockitoExtension.class)
 
@@ -26,11 +24,7 @@ StockRepository or;
 @InjectMocks
 StockServiceImpl os;
 
-Stock o = new Stock("stock_test",10,20);
-Stock s = new Stock("stock_test",5,10);
-Stock s1 = new Stock("stock_test1",2,10);
-
-
+Stock o = new Stock("stock test",20,100);
 
 Long getId()
 {
@@ -41,13 +35,14 @@ Long getId()
 }
 @Test
 @Order(0)
-void TestaddOperateur() {
+void TestaddStock() {
 	Stock op = new Stock();
     List<Stock> Stocks = new ArrayList<>();
     for (Long i=1L;i<=10L;i++) {
-        op.setIdStock(i);
-        op.setLibelleStock("stock1");
-        op.setQte(20);
+        op.setIdStock(i);;
+        op.setLibelleStock("test1");
+        op.setQte(30);
+
 
         Stock ca=or.save(op);
         Stocks.add(ca);
@@ -65,7 +60,8 @@ void TestdeleteAllStock() {
 void TestretrieveStock() {
     Mockito.when(or.findById(Mockito.anyLong())).thenReturn(Optional.of(o));
 
-    Mockito.when(or.findById(Mockito.anyLong())).thenReturn(Optional.of(o));
+    Mockito.when(or.findById(Mockito.anyLong())).thenReturn(Optional.of(o))
+    ;
     Stock op = os.retrieveStock(2L);
     Assertions.assertNotNull(op);
 
@@ -77,8 +73,5 @@ void TestgetAllOperateur(){
     Iterable<Stock> Stocks = or.findAll();
     Assertions.assertNotNull(Stocks);
 }
-
-
-
 
 }	
