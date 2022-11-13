@@ -33,8 +33,7 @@ public class CategorieProduitServiceImpl implements ICategorieProduitService {
 
 	@Override
 	public CategorieProduit updateCategorieProduit(CategorieProduit cp) {
-		categorieProduitRepository.save(cp);
-		return cp;
+		return addCategorieProduit(cp);
 	}
 
 	@Override
