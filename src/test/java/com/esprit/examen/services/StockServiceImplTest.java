@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class StockServiceImplTestMock {
+public class StockServiceImplTest {
 
 @Mock
 StockRepository or;
@@ -69,7 +69,7 @@ void TestretrieveStock() {
 }
 @Test
 @Order(4)
-void TestgetAllOperateur(){
+void TestgetAllStocks(){
     Iterable<Stock> Stocks = or.findAll();
     Assertions.assertNotNull(Stocks);
 }
