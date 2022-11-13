@@ -17,8 +17,4 @@ public interface IFournisseurService {
 	
 	void assignSecteurActiviteToFournisseur(Long idSecteurActivite, Long idFournisseur);
 
-	Fournisseur getFournisseurById(long id);
-	
-	void UpdateLibelleFournisseurId(String libelle, Long ids);
-
 }
