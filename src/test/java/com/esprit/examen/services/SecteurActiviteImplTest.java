@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class SecteurActiviteImplTest {
+ class SecteurActiviteImplTest {
 	
 	@Autowired
 	ISecteurActiviteService ss;
@@ -27,7 +27,7 @@ public class SecteurActiviteImplTest {
 	    }
 	 
 	 @Test
-	    public void testAddSecteurActivite(){
+	     void testAddSecteurActivite(){
 		    List<SecteurActivite> SecteurActivites = ss.retrieveAllSecteurActivite();
 		    int expected = SecteurActivites.size();
 		    SecteurActivite s = new SecteurActivite("ndq","Assurance");
@@ -40,7 +40,7 @@ public class SecteurActiviteImplTest {
 	    }
 	 
 	 @Test
-	    public void testUpdateSecteurActivite() {
+	     void testUpdateSecteurActivite() {
 		    SecteurActivite s = new SecteurActivite("*****","Assurance");
 		    SecteurActivite savedSecteurActivite= ss.addSecteurActivite(s);
 		    savedSecteurActivite.setLibelleSecteurActivite("64654654");
@@ -50,7 +50,7 @@ public class SecteurActiviteImplTest {
 	    }
 
 	 @Test
-	    public void testDeleteSecteurActivite() {
+	     void testDeleteSecteurActivite() {
 		    SecteurActivite s = new SecteurActivite("123136","Tajhiz");
 	            SecteurActivite savedSecteurActivite= ss.addSecteurActivite(s);
 		    ss.deleteSecteurActivite(savedSecteurActivite.getIdSecteurActivite());
