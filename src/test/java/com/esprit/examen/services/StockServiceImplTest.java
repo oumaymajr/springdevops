@@ -4,9 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 
-
-
-
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -102,7 +99,7 @@ public class StockServiceImplTest {
 	
 	@Test
 	@Order(5)
-	public void testretrieveAllStocks() {
+	public void testRetrieveAllStocks() {
 		l.debug("Test méthode Retrieve all Stocks");
 		List<Stock> stocks = (List<Stock>) stockService.retrieveAllStocks();
 		for (Stock stock : stocks) {

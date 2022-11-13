@@ -14,25 +14,32 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Service;
-import org.springframework.test.context.junit4.SpringRunner;
+
+
 import com.esprit.examen.entities.Stock;
 import static org.junit.Assert.*;
 
+
 import com.esprit.examen.repositories.StockRepository;
 
+
 import lombok.extern.slf4j.Slf4j;
-@Service
+
 @Slf4j
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+
+@ExtendWith(MockitoExtension.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
 public class StockServiceImplTestMock {
 	
 	 @Mock
