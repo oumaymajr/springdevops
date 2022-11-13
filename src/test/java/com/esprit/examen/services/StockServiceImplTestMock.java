@@ -83,48 +83,7 @@ void TestgetAllOperateur(){
     Assertions.assertNotNull(Stocks);
 }
 
-@Test
-@Order(5)
- void TestRetrieveStatusStock() {
-	
-		os.retrieveStatusStock();
-		Assertions.assertNotNull(stockList);
-		
-	
-	}
 
-@Test
-@Order(6)
-void TestUpdateStock() {
-	
-when(or.save(s)).thenReturn(s);
-assertNotNull(s);
-assertEquals(s, os.updateStock(s));
-
-}
-
-
-@Test
-@Order(7)
- void TestUpdateLibelleByStockId() {
-	
-
-		String libelle= "stock1_test";
-
-		os.UpdateLibelleStock_Id(libelle, (long) 42);
-
-		Stock st = os.getStockById((long) 42);
-
-}
-@Test
-@Order(8)
-public void TestDeleteStockById() {
- 
-		os.deleteStockById((long) 47);
-		
-		assertNull(os.getStockById((long) 47));
-		
-}
 
 
 }	
