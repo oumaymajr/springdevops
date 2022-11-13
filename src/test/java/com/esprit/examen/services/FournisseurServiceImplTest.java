@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class FournisseurServiceImplTest {
+class FournisseurServiceImplTest {
 
 @Mock
 FournisseurRepository fr;
