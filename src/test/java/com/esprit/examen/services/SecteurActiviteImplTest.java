@@ -28,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 	 
 	 @Test
 	     void testAddSecteurActivite(){
+		 
 		    List<SecteurActivite> SecteurActivites = ss.retrieveAllSecteurActivite();
 		    int expected = SecteurActivites.size();
 		    SecteurActivite s = new SecteurActivite("ndq","Assurance");
