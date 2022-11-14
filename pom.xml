@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.esprit.examen</groupId>
 	<artifactId>tpAchatProject</artifactId>
-	<version>1.0</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>tpAchatProject</name>
 	<description>tpAchatProject</description>
 	<properties>
@@ -19,7 +19,7 @@
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
-   		 <maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -110,14 +110,14 @@
 			</plugin>
 		</plugins>
 	</build>
-<distributionManagement>
-<snapshotRepository>
-<id>deploymentRepo</id>
-<url>http://192.168.56.132:8081/repository/maven-snapshots/</url>
-</snapshotRepository>
-<repository>
-<id>deploymentRepo</id>
-<url>http://192.168.56.132:8081/repository/maven-releases/</url>
-</repository>
-</distributionManagement>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>deploymentRepo</id>
+			<url>http://192.168.56.132:8081/repository/maven-snapshots/</url>
+		</snapshotRepository>
+		<repository>
+			<id>deploymentRepo</id>
+			<url>http://192.168.56.132:8081/repository/maven-releases/</url>
+		</repository>
+	</distributionManagement>
 </project>

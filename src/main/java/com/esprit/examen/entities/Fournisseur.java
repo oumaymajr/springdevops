@@ -29,7 +29,7 @@ public class Fournisseur implements Serializable {
 
 	public Fournisseur(String string, String string2, Date dateNaissance, String string3, String string4,
 			CategorieFournisseur ordinaire) {
-		// TODO Auto-generated constructor stub
+
 	}
 	private static final long serialVersionUID = 1L;
 
