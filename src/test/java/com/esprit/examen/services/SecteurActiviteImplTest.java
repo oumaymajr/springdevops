@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 	    	List<SecteurActivite> SecteurActivites = ss.retrieveAllSecteurActivite();
 	        Assertions.assertEquals(0, SecteurActivites.size());
 	    }
-	 
 	 @Test
 	     void testAddSecteurActivite(){
 		 
