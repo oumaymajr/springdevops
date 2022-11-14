@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.esprit.examen.entities.Reglement;
 import com.esprit.examen.repositories.FactureRepository;
 import com.esprit.examen.repositories.ReglementRepository;
+import java.util.Collections;
 
 @Service
 public class ReglementServiceImpl implements IReglementService {
@@ -32,16 +33,17 @@ public class ReglementServiceImpl implements IReglementService {
 		return reglementRepository.findById(id).orElse(null);
 	}
 
-	@Override
-	public List<Reglement> retrieveReglementByFacture(Long idFacture) {
-		return reglementRepository.retrieveReglementByFacture(idFacture);
-		
-	return (List<Reglement>) f.getReglements();
-	}
+
 
 	@Override
 	public float getChiffreAffaireEntreDeuxDate(Date startDate, Date endDate) {
 		return reglementRepository.getChiffreAffaireEntreDeuxDate( startDate, endDate);
+	}
+
+	@Override
+	public List<Reglement> retrieveReglementByFacture(Long idFacture) {
+
+		return Collections.emptyList();
 	}
 
 }
