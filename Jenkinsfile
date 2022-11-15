@@ -4,7 +4,7 @@ pipeline {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "172.10.0.140:8081"
-        NEXUS_REPOSITORY = "deployRepo"
+        NEXUS_REPOSITORY = "deploymentRepo"
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
         registryCredential = "87406a5a-32fa-4ef3-9133-848e1eb8cafa"
         dockerImage =''
