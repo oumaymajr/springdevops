@@ -27,6 +27,14 @@ pipeline {
                 }
             }
         }
+        stages {
+                        stage('MVN Package') {
+                            steps {
+                                dir('Spring/tpAchatProject') {
+                                    sh """mvn package"""
+                                }
+                            }
+                        }
         stage("Runing Tests with Mockito") {
             steps{
                 sh 'mvn test'
