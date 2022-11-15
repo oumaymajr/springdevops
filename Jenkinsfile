@@ -75,28 +75,28 @@ pipeline {
         }
                stage('Building Docker Image') {
                             steps {
-                                dir('tpAchatProject'){
+                                dir('springdevops'){
                                     sh 'docker build -t medalibouchhioua/tpachat .'
                                         }
                                     }
                                 }
                         stage('Login to DockerHub') {
                             steps{
-                                dir('tpAchatProject'){
+                                dir('springdevops'){
                                     sh 'docker login -u medalibouchhioua -p dockerpassword'
                                     }
                                 }
                             }
                         stage('Push to DockerHub') {
                             steps{
-                                dir('tpAchatProject'){
+                                dir('springdevops'){
                                     sh 'docker push medalibouchhioua/tpachat'
                                      }
                                 }
                             }
                         stage('Docker Compose'){
                             steps{
-                               dir('tpAchatProject'){
+                               dir('springdevops'){
                                     sh 'docker-compose up -d'
                                     }
                                }
