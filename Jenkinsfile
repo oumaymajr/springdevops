@@ -12,16 +12,6 @@ pipeline {
 
     agent any
     stages {
-        stage('GIT'){
-            steps{
-                echo 'pulling ...';
-                git branch : 'MedAli',
-                        url : 'https://github.com/oumaymajr/SpringAOP.git'
-
-            }
-        }
-
-
 
         stage('MVN clean'){
             steps{
@@ -83,48 +73,34 @@ pipeline {
             }
 
         }
-
-
-        stage('Building our image') {
-
-            steps {
-
-                script {
-
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                }
-
-            }
-
-        }
-
-        stage('Deploy our image') {
-
-            steps {
-
-                script {
-
-                    docker.withRegistry( '', registryCredential ) {
-
-                        dockerImage.push()
-
-                    }
-
-                }
-
-            }
-
-        }
-
-        stage('Cleaning up') {
-
-            steps {
-
-                sh "docker rmi $registry:$BUILD_NUMBER"
-
-            }
-
-        }
+               stage('Building Docker Image') {
+                            steps {
+                                dir('tpAchatProject'){
+                                    sh 'docker build -t medalibouchhioua/tpachat .'
+                                        }
+                                    }
+                                }
+                        stage('Login to DockerHub') {
+                            steps{
+                                dir('tpAchatProject'){
+                                    sh 'docker login -u medalibouchhioua -p dockerpassword'
+                                    }
+                                }
+                            }
+                        stage('Push to DockerHub') {
+                            steps{
+                                dir('tpAchatProject'){
+                                    sh 'docker push medalibouchhioua/tpachat'
+                                     }
+                                }
+                            }
+                        stage('Docker Compose'){
+                            steps{
+                               dir('tpAchatProject'){
+                                    sh 'docker-compose up -d'
+                                    }
+                               }
+                            }
 
     }
 
